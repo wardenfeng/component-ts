@@ -7,19 +7,19 @@ declare module me.feng3d {
         /**
          * 添加子组件事件
          */
-        static ADDED_COMPONET: string;
+        static ADDED_COMPONENT: string;
         /**
          * 被组件容器添加事件
          */
-        static BE_ADDED_COMPONET: string;
+        static BE_ADDED_COMPONENT: string;
         /**
          * 移除子组件事件
          */
-        static REMOVED_COMPONET: string;
+        static REMOVED_COMPONENT: string;
         /**
          * 被容器删除事件
          */
-        static BE_REMOVED_COMPONET: string;
+        static BE_REMOVED_COMPONENT: string;
         /**
          * 数据
          */
@@ -27,6 +27,7 @@ declare module me.feng3d {
             container: IComponent;
             child: IComponent;
         };
+        target: IComponent;
         /**
          * 构建组件事件
          */
@@ -109,20 +110,20 @@ declare module me.feng3d {
          * @param cls				类定义
          * @return
          */
-        getComponentByClass(cls: IComponentClass): IComponent;
+        getComponentByClass<T extends IComponent>(cls: new (...args) => T): T;
         /**
          * 根据类定义查找组件
          * @param cls		类定义
          * @return			返回与给出类定义一致的组件
          */
-        getComponentsByClass(cls: IComponentClass): IComponent[];
+        getComponentsByClass<T extends IComponent>(cls: new (...args) => T): T[];
         /**
          * 根据类定义获取或创建组件
          * <p>当不存在该类型对象时创建一个该组件并且添加到容器中</p>
          * @param cls
          * @return
          */
-        getOrCreateComponentByClass(cls: IComponentClass): IComponent;
+        getOrCreateComponentByClass<T extends IComponent>(cls: new (...args) => T): T;
         /**
         * 判断是否拥有组件
         * @param com	被检测的组件
@@ -231,20 +232,20 @@ declare module me.feng3d {
          * @param cls				类定义
          * @return
          */
-        getComponentByClass(cls: IComponentClass): IComponent;
+        getComponentByClass<T extends IComponent>(cls: new (...args) => T): T;
         /**
          * 根据类定义查找组件
          * @param cls		类定义
          * @return			返回与给出类定义一致的组件
          */
-        getComponentsByClass(cls: IComponentClass): IComponent[];
+        getComponentsByClass<T extends IComponent>(cls: new (...args) => T): T[];
         /**
          * 根据类定义获取或创建组件
          * <p>当不存在该类型对象时创建一个该组件并且添加到容器中</p>
          * @param cls
          * @return
          */
-        getOrCreateComponentByClass(cls: IComponentClass): IComponent;
+        getOrCreateComponentByClass<T extends IComponent>(cls: new (...args) => T): T;
         /**
          * 判断是否拥有组件
          * @param com	被检测的组件
@@ -278,5 +279,4 @@ declare module me.feng3d {
          */
         private dispatchRemovedEvent(component);
     }
-    type IComponentClass = new (...args) => IComponent;
 }

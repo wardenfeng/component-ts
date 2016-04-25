@@ -23,19 +23,19 @@ var me;
             /**
              * 添加子组件事件
              */
-            ComponentEvent.ADDED_COMPONET = "addedComponet";
+            ComponentEvent.ADDED_COMPONENT = "addedComponent";
             /**
              * 被组件容器添加事件
              */
-            ComponentEvent.BE_ADDED_COMPONET = "beAddedComponet";
+            ComponentEvent.BE_ADDED_COMPONENT = "beAddedComponet";
             /**
              * 移除子组件事件
              */
-            ComponentEvent.REMOVED_COMPONET = "removedComponet";
+            ComponentEvent.REMOVED_COMPONENT = "removedComponent";
             /**
              * 被容器删除事件
              */
-            ComponentEvent.BE_REMOVED_COMPONET = "beRemovedComponet";
+            ComponentEvent.BE_REMOVED_COMPONENT = "beRemovedComponent";
             return ComponentEvent;
         }(feng3d.Event));
         feng3d.ComponentEvent = ComponentEvent;
@@ -67,7 +67,7 @@ var me;
                  */
                 get: function () {
                     if (this._componentName == null)
-                        this._componentName = Object.getPrototypeOf(this).name;
+                        this._componentName = Object.getPrototypeOf(this).constructor.name;
                     return this._componentName;
                 },
                 set: function (value) {
@@ -170,7 +170,7 @@ var me;
              * @return 					获取到的组件
              */
             Component.prototype.getComponentByName = function (componentName) {
-                var filterResult = this.getComponentsByName(this.componentName);
+                var filterResult = this.getComponentsByName(componentName);
                 return filterResult[0];
             };
             /**
@@ -276,19 +276,21 @@ var me;
              * 派发移除子组件事件
              */
             Component.prototype.dispatchAddedEvent = function (component) {
-                this.dispatchEvent(new feng3d.ComponentEvent(feng3d.ComponentEvent.ADDED_COMPONET, { container: this, child: component }));
-                component.dispatchEvent(new feng3d.ComponentEvent(feng3d.ComponentEvent.BE_ADDED_COMPONET, { container: this, child: component }));
+                this.dispatchEvent(new feng3d.ComponentEvent(feng3d.ComponentEvent.ADDED_COMPONENT, { container: this, child: component }));
+                component.dispatchEvent(new feng3d.ComponentEvent(feng3d.ComponentEvent.BE_ADDED_COMPONENT, { container: this, child: component }));
             };
             /**
              * 派发移除子组件事件
              */
             Component.prototype.dispatchRemovedEvent = function (component) {
-                this.dispatchEvent(new feng3d.ComponentEvent(feng3d.ComponentEvent.REMOVED_COMPONET, { container: this, child: component }));
-                component.dispatchEvent(new feng3d.ComponentEvent(feng3d.ComponentEvent.BE_REMOVED_COMPONET, { container: this, child: component }));
+                this.dispatchEvent(new feng3d.ComponentEvent(feng3d.ComponentEvent.REMOVED_COMPONENT, { container: this, child: component }));
+                component.dispatchEvent(new feng3d.ComponentEvent(feng3d.ComponentEvent.BE_REMOVED_COMPONENT, { container: this, child: component }));
             };
             return Component;
         }(feng3d.EventDispatcher));
         feng3d.Component = Component;
+        //定义实现 IComponent 的类定义
+        // export type IComponentClass<T> = ;
         /**
          * 断言
          * @b			判定为真的表达式

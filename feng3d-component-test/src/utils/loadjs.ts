@@ -1,5 +1,5 @@
 var testSources = [//
-    // "me/feng3d/events/EventBubblesTest.js",//
+    "me/feng3d/component/ComponentTest.js",//
     // "me/feng3d/events/EventBubblesTest2.js",//
     // "me/feng3d/events/EventDispatcherTest.js",//
     // "me/feng3d/events/IEventDispatcherTest.js",//
@@ -22,7 +22,7 @@ function onFeng3dInited(ev: Event) {
 }
 
 function onFeng3dInited1(ev: Event) {
-    
+
     testSources.forEach(element => {
 
         loadjs("bin/" + element);
@@ -33,4 +33,22 @@ function onFeng3dInited1(ev: Event) {
 
 function getClassName(url: string): string {
     return "me.feng3d." + url.split("/").pop().split(".")[0];
+}
+
+function assert(b: boolean) {
+    if (!b)
+        throw new Error();
+}
+
+////////////////////////////////////////
+// In your runtime library somewhere
+////////////////////////////////////////
+
+function applyMixins(derivedCtor: any, baseCtors: any[]) {
+    baseCtors.forEach(baseCtor => {
+        Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
+            console.log(name);
+            derivedCtor.prototype[name] = baseCtor.prototype[name];
+        });
+    });
 }
