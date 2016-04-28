@@ -6,8 +6,6 @@ module me.feng3d {
 	 */
     export class Component extends EventDispatcher implements IComponent {
 
-        private _componentName: string;
-
 		/**
 		 * 组件列表
 		 */
@@ -18,20 +16,6 @@ module me.feng3d {
 		 */
         constructor() {
             super();
-        }
-
-        public set componentName(value: string) {
-            this._componentName = value;
-        }
-
-		/**
-		 * 组件名称
-		 */
-        public get componentName(): string {
-            if (this._componentName == null)
-                this._componentName = Object.getPrototypeOf(this).constructor.name;
-
-            return this._componentName;
         }
 
 		/**
@@ -141,20 +125,20 @@ module me.feng3d {
          * @param componentName		组件名称
          * @return 					获取到的组件
          */
-        public getComponentByName(componentName: String): IComponent {
-            var filterResult = this.getComponentsByName(componentName);
+        public getComponentByName(name: String): IComponent {
+            var filterResult = this.getComponentsByName(name);
             return filterResult[0];
         }
 
         /**
          * 获取与给出组件名称相同的所有组件
          * <p>注意：此处比较的是componentName而非name</p>
-         * @param componentName		组件名称
+         * @param name		        组件名称
          * @return 					获取到的组件
          */
-        public getComponentsByName(componentName: String): IComponent[] {
+        public getComponentsByName(name: String): IComponent[] {
             var filterResult = this.components.filter(function (item: IComponent, ...args): boolean {
-                return item.componentName == componentName;
+                return item.name == name;
             });
             return filterResult;
         }

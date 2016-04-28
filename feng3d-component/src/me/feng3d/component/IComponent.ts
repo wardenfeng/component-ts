@@ -5,9 +5,9 @@ module me.feng3d {
      */
     export interface IComponent extends IEventDispatcher {
         /**
-         * 组件名称
+         * 名称
          */
-        componentName: string;
+        name: string;
 
         /**
          * 组件数量
