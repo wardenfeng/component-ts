@@ -222,11 +222,15 @@ module me.feng3d {
         /**
          * 派发子组件事件
          * <p>事件广播给子组件</p>
-         * @param event
+         * @param event     事件
+         * @param depth     广播深度
          */
-        public dispatchChildrenEvent(event: Event): void {
+        public dispatchChildrenEvent(event: Event, depth = 1): void {
+            if (depth == 0)
+                return;
             this.components.forEach(function (item: IComponent, ...args): void {
                 item.dispatchEvent(event);
+                item.dispatchChildrenEvent(event, depth - 1)
             });
         }
 
