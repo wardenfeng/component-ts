@@ -1,2 +1,1 @@
 #component-ts
-test
