@@ -5,9 +5,10 @@ module me.feng3d {
 	 * @author feng 2015-12-2
 	 */
     export class ComponentEvent extends Event {
-				
+
 		/**
 		 * 添加子组件事件
+		 * data = { container: IComponent, child: IComponent }
 		 */
         public static ADDED_COMPONENT = "addedComponent";
 
@@ -18,6 +19,7 @@ module me.feng3d {
 
 		/**
 		 * 移除子组件事件
+		 * data = { container: IComponent, child: IComponent }
 		 */
         public static REMOVED_COMPONENT = "removedComponent";
 
@@ -26,12 +28,10 @@ module me.feng3d {
 		 */
         public static BE_REMOVED_COMPONENT = "beRemovedComponent";
 
-		/**
-		 * 数据
-		 */
-        data: { container: IComponent, child: IComponent };
-
-		target:IComponent;
+        /**
+         * 事件目标。
+         */
+		target: IComponent;
 
 		/**
 		 * 构建组件事件

@@ -250,8 +250,6 @@ module me.feng3d {
             component.dispatchEvent(new ComponentEvent(ComponentEvent.BE_REMOVED_COMPONENT, { container: this, child: component }));
         }
     }
-    //定义实现 IComponent 的类定义
-    // export type IComponentClass<T> = ;
 
     /**
 	 * 断言

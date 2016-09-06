@@ -17,9 +17,9 @@
         // "out": "release/feng3d.js"
         // "out": "../feng3d-ts-examples/libs/feng3d.js"
         // "out": "../feng3d-component-test/libs/feng3d-component.js"
-        // "outFile": "../../feng3d-ts/feng3d/libs/feng3d-component.js"
         // "outFile": "../../feng2d-ts/feng2d/libs/feng3d-component.js"
-        "outFile": "../../feng2d-ts/feng2d-examples/libs/feng-component.js"
+        // "outFile": "../../feng2d-ts/feng2d-examples/libs/feng-component.js"
+        "outFile": "../../feng3d-ts/feng3d/libs/feng3d-component.js"
         // "outFile": "../../feng3d-ts/feng3d-ts-examples/libs/feng3d-component.js"
     },
     "files": [ //注：如果有继承关系的，父类必须排在子类前面
