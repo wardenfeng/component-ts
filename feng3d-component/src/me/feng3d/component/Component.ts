@@ -6,6 +6,11 @@ module me.feng3d {
 	 */
     export class Component extends EventDispatcher implements IComponent {
 
+        /**
+         * 父组件
+         */
+        protected _parentComponent: IComponent;
+
 		/**
 		 * 组件列表
 		 */
@@ -15,7 +20,39 @@ module me.feng3d {
 		 * 创建一个组件容器
 		 */
         constructor() {
+
             super();
+            this.initComponent();
+        }
+
+        /**
+         * 初始化组件
+         */
+        protected initComponent(): void {
+
+            this.addEventListener(ComponentEvent.ADDED_COMPONENT, this.onAddedComponent, this, Number.MAX_VALUE);
+            this.addEventListener(ComponentEvent.REMOVED_COMPONENT, this.onRemovedComponent, this, Number.MAX_VALUE);
+        }
+
+        protected onAddedComponent(event: ComponentEvent): void {
+            var data: { container: IComponent, child: IComponent } = event.data;
+            if (data.child == this) {
+                this._parentComponent = data.container;
+            }
+        }
+
+        protected onRemovedComponent(event: ComponentEvent): void {
+            var data: { container: IComponent, child: IComponent } = event.data;
+            if (event.data.child == this) {
+                this._parentComponent = null;
+            }
+        }
+
+        /**
+         * 父组件
+         */
+        public get parentComponent(): IComponent {
+            return this._parentComponent;
         }
 
 		/**

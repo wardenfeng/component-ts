@@ -32,12 +32,5 @@ module me.feng3d {
          * 事件目标。
          */
 		target: IComponent;
-
-		/**
-		 * 构建组件事件
-		 */
-        constructor(type: string, data: { container: IComponent, child: IComponent }, bubbles = false) {
-            super(type, data, bubbles);
-        }
     }
 }

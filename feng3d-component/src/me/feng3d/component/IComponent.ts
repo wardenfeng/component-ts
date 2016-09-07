@@ -15,6 +15,11 @@ module me.feng3d {
         numComponents: number;
 
         /**
+         * 父组件
+         */
+        parentComponent: IComponent;
+
+        /**
          * 添加组件
          * @param component 被添加组件
          */
